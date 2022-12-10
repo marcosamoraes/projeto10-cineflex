@@ -22,7 +22,7 @@ export default function Seat(props) {
 
   return (
     <>
-      {props.seat.isAvailable ? (
+      {!props.seat.isAvailable ? (
         <>
           {isSelected(props.seat.id) ? (
             <ButtonSelected
