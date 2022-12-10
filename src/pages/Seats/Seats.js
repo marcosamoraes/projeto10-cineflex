@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Container,
   InputGroup,
@@ -16,8 +16,10 @@ export default function Seats() {
   const { id } = useParams();
   const [showtime, setShowtime] = useState({});
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [name, setName] = useState(null)
-  const [cpf, setCpf] = useState(null)
+  const [selectedSeatsIndex, setSelectedSeatsIndex] = useState([]);
+  const [name, setName] = useState(null);
+  const [cpf, setCpf] = useState(null);
+  let navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -32,7 +34,26 @@ export default function Seats() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  }
+
+    const data = { name, cpf, ids: selectedSeats };
+    axios
+      .post("/seats/book-many", data)
+      .then((res) => {
+        const orderData = {
+          name,
+          cpf,
+          date: showtime?.day.date,
+          title: showtime?.movie.title,
+          time: showtime?.name,
+          seats: selectedSeatsIndex,
+        };
+        localStorage.setItem('order', JSON.stringify(orderData));
+        navigate("/sucesso");
+      })
+      .catch((err) => {
+        console.log("🚀 ~ file: Seats.js:41 ~ handleSubmit ~ err", err);
+      });
+  };
 
   return (
     <>
@@ -49,6 +70,8 @@ export default function Seats() {
                 seat={seat}
                 selectedSeats={selectedSeats}
                 setSelectedSeats={setSelectedSeats}
+                selectedSeatsIndex={selectedSeatsIndex}
+                setSelectedSeatsIndex={setSelectedSeatsIndex}
               />
             );
           })}
@@ -70,15 +93,29 @@ export default function Seats() {
         <form action="" method="GET" onSubmit={(e) => handleSubmit(e)}>
           <InputGroup>
             <label htmlFor="name">Nome do comprador:</label>
-            <input type="text" onChange={(e) => setName(e.target.value)} placeholder="Digite seu nome..." required/>
+            <input
+              type="text"
+              name="name"
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Digite seu nome..."
+              required
+              data-test="client-name"
+            />
           </InputGroup>
 
           <InputGroup>
-            <label htmlFor="name">CPF do comprador:</label>
-            <input type="text" onChange={(e) => setCpf(e.target.value)} placeholder="Digite seu CPF..." required/>
+            <label htmlFor="cpf">CPF do comprador:</label>
+            <input
+              type="text"
+              id="cpf"
+              onChange={(e) => setCpf(e.target.value)}
+              placeholder="Digite seu CPF..."
+              required
+              data-test="client-cpf"
+            />
           </InputGroup>
 
-          <button type="submit">Reservar assento(s)</button>
+          <button type="submit" data-test="book-seat-btn">Reservar assento(s)</button>
         </form>
       </Container>
       <Footer

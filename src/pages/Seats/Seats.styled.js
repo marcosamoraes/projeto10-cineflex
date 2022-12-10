@@ -5,6 +5,17 @@ export const Container = styled.div`
 
   form {
     margin-top: 40px;
+    text-align: center;
+
+    > button {
+      background: #e8833a;
+      border-radius: 3px;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 50px;
+      margin-bottom: 150px;
+      border: none;
+    }
   }
 `;
 
@@ -64,5 +75,19 @@ export const Label = styled.div`
 `;
 
 export const InputGroup = styled.div`
+  margin-bottom: 10px;
+  text-align: left;
 
+  > input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #d5d5d5;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 15px;
+
+    ::placeholder {
+      color: #afafaf;
+    }
+  }
 `;

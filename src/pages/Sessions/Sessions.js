@@ -15,7 +15,7 @@ export default function Sessions() {
         setMovie(data);
       })
       .catch((err) => {
-        console.log("🚀 ~ file: Sessions.js:18 ~ useEffect ~ err", err);
+        console.log("🚀 ~ file: Sessions.js:18 ~ useEffect ~ err", err)
       });
   }, []);
 
@@ -27,14 +27,14 @@ export default function Sessions() {
         </Title>
         {movie.days?.map((day) => {
           return (
-            <TimeBox key={day.id}>
+            <TimeBox key={day.id} data-test="movie-day">
               <p>
                 {day.weekday} - {day.date}
               </p>
               {day.showtimes?.map((showtime) => {
                 return (
                   <Link to={`/assentos/${showtime.id}`}>
-                    <button>{showtime.name}</button>
+                    <button data-test="showtime">{showtime.name}</button>
                   </Link>
                 );
               })}
