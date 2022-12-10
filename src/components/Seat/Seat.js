@@ -28,6 +28,7 @@ export default function Seat(props) {
             <ButtonSelected
               onClick={() => selectSeat(props.seat.id, props.index + 1)}
               data-test="seat"
+              data-identifier="seat-selected"
             >
               {String(props.index + 1).padStart(2, "0")}
             </ButtonSelected>
@@ -35,6 +36,7 @@ export default function Seat(props) {
             <Button
               onClick={() => selectSeat(props.seat.id, props.index + 1)}
               data-test="seat"
+              data-identifier="seat-available"
             >
               {String(props.index + 1).padStart(2, "0")}
             </Button>
@@ -44,7 +46,8 @@ export default function Seat(props) {
         <ButtonUnavailable
           onClick={() => alert("Esse assento não está disponível")}
           data-test="seat"
-        >
+          data-identifier="seat-unavailable"
+          >
           {String(props.index + 1).padStart(2, "0")}
         </ButtonUnavailable>
       )}
