@@ -30,7 +30,7 @@ export default function Seats() {
       .catch((err) => {
         console.log("🚀 ~ file: Seats.js:16 ~ useEffect ~ err", err);
       });
-  }, []);
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

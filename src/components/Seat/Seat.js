@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button } from "./Seat.styled";
 
 export default function Seat(props) {

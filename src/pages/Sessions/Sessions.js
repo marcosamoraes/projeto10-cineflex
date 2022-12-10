@@ -17,7 +17,7 @@ export default function Sessions() {
       .catch((err) => {
         console.log("🚀 ~ file: Sessions.js:18 ~ useEffect ~ err", err)
       });
-  }, []);
+  }, [id]);
 
   return (
     <>
