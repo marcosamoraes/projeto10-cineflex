@@ -96,6 +96,7 @@ export default function Seats() {
             <input
               type="text"
               name="name"
+              value=""
               onChange={(e) => setName(e.target.value)}
               placeholder="Digite seu nome..."
               required
@@ -108,6 +109,7 @@ export default function Seats() {
             <input
               type="text"
               id="cpf"
+              value=""
               onChange={(e) => setCpf(e.target.value)}
               placeholder="Digite seu CPF..."
               required
