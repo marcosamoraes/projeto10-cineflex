@@ -19,7 +19,7 @@ export default function Seats() {
   const [selectedSeatsIndex, setSelectedSeatsIndex] = useState([]);
   const [name, setName] = useState(null);
   const [cpf, setCpf] = useState(null);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -38,7 +38,7 @@ export default function Seats() {
     const data = { name, cpf, ids: selectedSeats };
     axios
       .post("/seats/book-many", data)
-      .then((res) => {
+      .then(() => {
         const orderData = {
           name,
           cpf,

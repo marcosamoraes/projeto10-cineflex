@@ -14,7 +14,8 @@ export const Button = styled.button`
   padding: 0;
   font-size: 11px;
   margin-bottom: 18px;
-`
+`;
+
 export const ButtonUnavailable = styled.button`
   background-color: #FBE192;
   border: 1px solid #F7C52B;
@@ -29,7 +30,7 @@ export const ButtonUnavailable = styled.button`
   padding: 0;
   font-size: 11px;
   margin-bottom: 18px;
-`
+`;
 
 export const ButtonSelected = styled.button`
   background-color: #1AAE9E;
@@ -45,4 +46,4 @@ export const ButtonSelected = styled.button`
   padding: 0;
   font-size: 11px;
   margin-bottom: 18px;
-`
+`;

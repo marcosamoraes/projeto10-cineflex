@@ -4,6 +4,7 @@ export default function Seat(props) {
   const isSelected = (id) => {
     return props.selectedSeats.includes(id);
   };
+  const padNumber = 2;
 
   const selectSeat = (id, index) => {
     if (!isSelected(id)) {
@@ -30,7 +31,7 @@ export default function Seat(props) {
               data-test="seat"
               data-identifier="seat-selected"
             >
-              {String(props.index + 1).padStart(2, "0")}
+              {String(props.index + 1).padStart(padNumber, "0")}
             </ButtonSelected>
           ) : (
             <Button
@@ -38,7 +39,7 @@ export default function Seat(props) {
               data-test="seat"
               data-identifier="seat-available"
             >
-              {String(props.index + 1).padStart(2, "0")}
+              {String(props.index + 1).padStart(padNumber, "0")}
             </Button>
           )}
         </>
@@ -48,7 +49,7 @@ export default function Seat(props) {
           data-test="seat"
           data-identifier="seat-unavailable"
           >
-          {String(props.index + 1).padStart(2, "0")}
+          {String(props.index + 1).padStart(padNumber, "0")}
         </ButtonUnavailable>
       )}
     </>

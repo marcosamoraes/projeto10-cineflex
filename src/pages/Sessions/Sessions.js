@@ -15,7 +15,7 @@ export default function Sessions() {
         setMovie(data);
       })
       .catch((err) => {
-        console.log("🚀 ~ file: Sessions.js:18 ~ useEffect ~ err", err)
+        console.log("🚀 ~ file: Sessions.js:18 ~ useEffect ~ err", err);
       });
   }, [id]);
 

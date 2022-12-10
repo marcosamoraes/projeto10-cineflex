@@ -31,4 +31,4 @@ export const Movie = styled.div`
     box-sizing: border-box;
     box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
   }
-`
+`;
