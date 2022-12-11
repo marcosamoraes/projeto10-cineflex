@@ -1,4 +1,4 @@
-import { Button, ButtonSelected, ButtonUnavailable } from "./Seat.styled";
+import { Button } from "./Seat.styled";
 
 export default function Seat(props) {
   const isSelected = (id) => {
@@ -21,37 +21,38 @@ export default function Seat(props) {
     }
   };
 
+  const handleClick = () => {
+    return props.seat.isAvailable
+      ? selectSeat(props.seat.id, props.index + 1)
+      : alert("Esse assento não está disponível");
+  };
+
+  const handleColor = () => {
+    let colors = {
+      bg: "#C3CFD9",
+      border: "#808F9D",
+    };
+
+    if (isSelected(props.seat.id)) {
+      colors = {
+        bg: "#1AAE9E",
+        border: "#0E7D71",
+      };
+    }
+
+    if (!props.seat.isAvailable) {
+      colors = {
+        bg: "#FBE192",
+        border: "#F7C52B",
+      };
+    }
+
+    return colors;
+  };
+
   return (
-    <>
-      {props.seat.isAvailable ? (
-        <>
-          {isSelected(props.seat.id) ? (
-            <ButtonSelected
-              onClick={() => selectSeat(props.seat.id, props.index + 1)}
-              data-test="seat"
-              data-identifier="seat-selected"
-            >
-              {String(props.index + 1).padStart(padNumber, "0")}
-            </ButtonSelected>
-          ) : (
-            <Button
-              onClick={() => selectSeat(props.seat.id, props.index + 1)}
-              data-test="seat"
-              data-identifier="seat-available"
-            >
-              {String(props.index + 1).padStart(padNumber, "0")}
-            </Button>
-          )}
-        </>
-      ) : (
-        <ButtonUnavailable
-          onClick={() => alert("Esse assento não está disponível")}
-          data-test="seat"
-          data-identifier="seat-unavailable"
-          >
-          {String(props.index + 1).padStart(padNumber, "0")}
-        </ButtonUnavailable>
-      )}
-    </>
+    <Button onClick={() => handleClick()} colors={handleColor()} data-test="seat">
+      {String(props.index + 1).padStart(padNumber, "0")}
+    </Button>
   );
 }
